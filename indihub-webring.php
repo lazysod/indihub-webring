@@ -17,50 +17,6 @@ function indihub_webring_settings() {
 }
 add_action('admin_init', 'indihub_webring_settings');
 
-// Add settings menu
-function indihub_webring_menu() {
-    add_options_page(
-        'IndiHub Webring Settings',
-        'IndiHub Webring',
-        'manage_options',
-        'indihub-webring',
-        'indihub_webring_settings_page'
-    );
-}
-add_action('admin_menu', 'indihub_webring_menu');
-
-// Create settings page content
-function indihub_webring_settings_page() {
-    ?>
-    <div class="wrap">
-        <h1>IndiHub Webring Settings</h1>
-        <form method="post" action="options.php">
-            <?php
-            settings_fields('indihub_webring');
-            do_settings_sections('indihub_webring');
-            ?>
-            <table class="form-table">
-                <tr valign="top">
-                    <th scope="row">User ID</th>
-                    <td><input type="text" name="indihub_user_id" value="<?php echo esc_attr(get_option('indihub_user_id')); ?>" /></td>
-                </tr>
-                <tr valign="top">
-                    <th scope="row">Site ID</th>
-                    <td><input type="text" name="indihub_site_id" value="<?php echo esc_attr(get_option('indihub_site_id')); ?>" /></td>
-                </tr>
-                <tr valign="top">
-                    <th scope="row">Token</th>
-                    <td><input type="text" name="indihub_token" value="<?php echo esc_attr(get_option('indihub_token')); ?>" /></td>
-                </tr>
-            </table>
-            <?php
-            submit_button();
-            ?>
-        </form>
-    </div>
-    <?php
-}
-
 // Shortcode for Webring Display
 function indihub_webring_shortcode($atts) {
     $user_id = get_option('indihub_user_id');
